@@ -546,39 +546,6 @@
     }
     .legal-link-item .link-icon { font-size: 1.1rem; flex-shrink: 0; }
 
-    /* ===== NPO DOCS ===== */
-    .npo-table-wrap {
-      overflow-x: auto;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-    .npo-table {
-      width: 100%;
-      border-collapse: collapse;
-      background: var(--white);
-      font-size: 0.92rem;
-    }
-    .npo-table thead { background: var(--navy); color: var(--white); }
-    .npo-table th {
-      padding: 14px 20px;
-      font-family: var(--font-heading);
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-align: left;
-    }
-    .npo-table td { padding: 14px 20px; border-bottom: 1px solid var(--mid-gray); color: var(--text-muted); }
-    .npo-table tr:last-child td { border-bottom: none; }
-    .npo-table tr:hover td { background: var(--light-gray); }
-    .npo-table a {
-      color: var(--navy);
-      font-weight: 600;
-      text-decoration: underline;
-      text-underline-offset: 2px;
-    }
-    .npo-table a:hover { color: var(--red); }
-
     /* ===== GALLERY ===== */
     .gallery-grid {
       display: grid;
@@ -1043,21 +1010,6 @@
       </div>
     </section>
 
-    <!-- ===== NPO TAX FORMS ===== -->
-    <section id="npo-docs" aria-labelledby="npo-heading">
-      <div class="container">
-        <div class="fade-in">
-          <span class="section-label">Nonprofit Transparency</span>
-          <h2 class="section-title" id="npo-heading">NPO Tax Forms</h2>
-          <div class="divider" aria-hidden="true"></div>
-          <p class="section-intro">We The People Foundation is committed to full financial transparency. Annual IRS Form 990 filings are published here for public review.</p>
-        </div>
-        <div class="npo-table-wrap fade-in" id="npo-table-wrap">
-          <!-- JS rendered -->
-        </div>
-      </div>
-    </section>
-
     <!-- ===== GALLERIA ===== -->
     <section id="gallery" class="section-alt" aria-labelledby="gallery-heading">
       <div class="container">
@@ -1273,7 +1225,6 @@
             <li><a href="#reviews">We The People</a></li>
             <li><a href="#gallery">Photos</a></li>
             <li><a href="#florida-legal">Florida Legal</a></li>
-            <li><a href="#npo-docs">NPO Tax Forms</a></li>
             <li><a href="#contribute">Contribute</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
@@ -1370,11 +1321,6 @@
       { label: "Public Records Request Form", url: "#" },
       { label: "Florida Statute Reference", url: "#" },
       { label: "Campaign Finance Disclosure", url: "#" }
-    ];
-
-    var NPO_DOCS = [
-      { name: "We The People Foundation — Form 990", year: "2024", url: "#" },
-      { name: "We The People Foundation — Form 990", year: "2023", url: "#" }
     ];
 
     var GALLERY_IMAGES = [
@@ -1542,37 +1488,6 @@
           '</a>';
         container.appendChild(li);
       });
-    })();
-
-    /* --- NPO Docs Table --- */
-    (function renderNpoDocs() {
-      var container = document.getElementById('npo-table-wrap');
-      if (!container) return;
-
-      var rowsHtml = NPO_DOCS.map(function (doc) {
-        return '<tr>' +
-          '<td>' + escHtml(doc.name) + '</td>' +
-          '<td>' + escHtml(doc.year) + '</td>' +
-          '<td>' +
-            '<a href="' + escAttr(doc.url) + '" ' +
-               'aria-label="Download ' + escAttr(doc.name) + ' for tax year ' + escAttr(doc.year) + '">' +
-              'Download PDF' +
-            '</a>' +
-          '</td>' +
-        '</tr>';
-      }).join('');
-
-      container.innerHTML =
-        '<table class="npo-table" aria-label="NPO Tax Form Documents">' +
-          '<thead>' +
-            '<tr>' +
-              '<th scope="col">Document</th>' +
-              '<th scope="col">Tax Year</th>' +
-              '<th scope="col">Download</th>' +
-            '</tr>' +
-          '</thead>' +
-          '<tbody>' + rowsHtml + '</tbody>' +
-        '</table>';
     })();
 
     /* --- Gallery --- */
