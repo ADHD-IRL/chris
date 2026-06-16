@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Christopher Leiphart is a Florida political candidate, veteran, and father advocating for constitutional liberties, parental rights, judicial reform, and transparent government. Based in Northwest Florida." />
+  <title>Christopher Leiphart — Florida Political Candidate</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Design tokens ─────────────────────────────────────── */
+    :root {
+      --navy:   #1B2A4A;
+      --red:    #C0392B;
+      --gold:   #C9A84C;
+      --white:  #FFFFFF;
+      --offwhite: #F5F6F8;
+      --gray:   #6B7280;
+      --light:  #E5E7EB;
+      --dark:   #111827;
+      --font-head: 'Oswald', sans-serif;
+      --font-body: 'Open Sans', sans-serif;
+      --radius: 6px;
+      --shadow: 0 2px 12px rgba(0,0,0,.12);
+      --transition: .25s ease;
+    }
+
+    /* ── Reset ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font-body); color: var(--dark); background: var(--white); line-height: 1.65; }
+    img  { max-width: 100%; height: auto; display: block; }
+    a    { color: inherit; text-decoration: none; }
+    ul   { list-style: none; }
+
+    /* ── Accessibility ─────────────────────────────────────── */
+    .skip-link {
+      position: absolute; top: -100px; left: 1rem;
+      background: var(--red); color: #fff; padding: .5rem 1rem;
+      border-radius: var(--radius); font-weight: 600; z-index: 9999;
+      transition: top var(--transition);
+    }
+    .skip-link:focus { top: 1rem; }
+
+    /* ── Layout helpers ────────────────────────────────────── */
+    .container { width: 92%; max-width: 1160px; margin: 0 auto; }
+    .section    { padding: 5rem 0; }
+    .section--alt { background: var(--offwhite); }
+    .section-label {
+      font-family: var(--font-head); font-size: .8rem; letter-spacing: .2em;
+      color: var(--red); text-transform: uppercase; margin-bottom: .4rem;
+    }
+    .section-title {
+      font-family: var(--font-head); font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--navy); line-height: 1.2; margin-bottom: 1rem;
+    }
+    .section-subtitle { color: var(--gray); max-width: 600px; margin-bottom: 2.5rem; }
+    .btn {
+      display: inline-block; padding: .75rem 1.8rem; border-radius: var(--radius);
+      font-family: var(--font-head); font-size: 1rem; letter-spacing: .05em;
+      cursor: pointer; transition: all var(--transition); border: 2px solid transparent;
+    }
+    .btn--primary   { background: var(--red);   color: #fff; border-color: var(--red); }
+    .btn--primary:hover { background: #a32320; border-color: #a32320; }
+    .btn--secondary { background: transparent; color: #fff; border-color: #fff; }
+    .btn--secondary:hover { background: rgba(255,255,255,.15); }
+    .btn--navy { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .btn--navy:hover { background: #142038; }
+    .btn--gold { background: var(--gold); color: var(--navy); border-color: var(--gold); font-weight: 700; }
+    .btn--gold:hover { background: #b8963e; }
+
+    /* Fade-in on scroll */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── HEADER / NAV ──────────────────────────────────────── */
+    #site-header {
+      position: sticky; top: 0; z-index: 1000;
+      background: var(--navy);
+      box-shadow: 0 2px 8px rgba(0,0,0,.35);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .85rem 0;
+    }
+    .nav-logo {
+      font-family: var(--font-head); color: #fff; font-size: 1.25rem; line-height: 1.1;
+    }
+    .nav-logo span { display: block; font-size: .7rem; color: var(--gold); letter-spacing: .15em; text-transform: uppercase; }
+    .nav-links {
+      display: flex; gap: .25rem; align-items: center;
+    }
+    .nav-links a {
+      font-family: var(--font-head); font-size: .82rem; letter-spacing: .1em;
+      color: rgba(255,255,255,.85); padding: .45rem .7rem; border-radius: var(--radius);
+      text-transform: uppercase; transition: all var(--transition); white-space: nowrap;
+    }
+    .nav-links a:hover, .nav-links a.active { color: #fff; background: rgba(255,255,255,.12); }
+    .nav-links .btn--primary { font-size: .82rem; padding: .4rem 1rem; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer;
+      background: none; border: none; padding: .4rem; border-radius: var(--radius);
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px; background: #fff;
+      border-radius: 2px; transition: all var(--transition);
+    }
+    .hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-nav {
+      display: none; flex-direction: column; background: var(--navy);
+      border-top: 1px solid rgba(255,255,255,.1); padding: .75rem 0 1rem;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-family: var(--font-head); color: rgba(255,255,255,.85); letter-spacing: .1em;
+      text-transform: uppercase; font-size: .9rem; padding: .75rem 5%;
+      border-bottom: 1px solid rgba(255,255,255,.06); transition: color var(--transition);
+    }
+    .mobile-nav a:hover { color: #fff; }
+    .mobile-nav .btn--primary { margin: .75rem 5% 0; text-align: center; }
+
+    /* ── HERO ──────────────────────────────────────────────── */
+    #hero {
+      position: relative; min-height: 88vh;
+      background: url('https://static.wixstatic.com/media/ed7391_8846ebcdd6cb41f298ae8e4d185ea506~mv2.png') center/cover no-repeat;
+      display: flex; align-items: center;
+    }
+    #hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(27,42,74,.88) 40%, rgba(192,57,43,.55));
+    }
+    .hero-content { position: relative; z-index: 1; padding: 4rem 0; max-width: 680px; }
+    .hero-flag {
+      font-family: var(--font-head); font-size: .8rem; letter-spacing: .25em;
+      color: var(--gold); text-transform: uppercase; margin-bottom: .75rem;
+    }
+    .hero-title {
+      font-family: var(--font-head); font-size: clamp(2.4rem, 6vw, 4.2rem);
+      color: #fff; line-height: 1.1; margin-bottom: 1.2rem; font-weight: 700;
+    }
+    .hero-title em { color: var(--gold); font-style: normal; }
+    .hero-sub {
+      color: rgba(255,255,255,.85); font-size: 1.1rem; max-width: 540px;
+      margin-bottom: 2rem; line-height: 1.6;
+    }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* ── ABOUT ─────────────────────────────────────────────── */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .about-photo {
+      border-radius: var(--radius); overflow: hidden;
+      box-shadow: var(--shadow); position: relative;
+    }
+    .about-photo::after {
+      content: ''; position: absolute; inset: 0;
+      box-shadow: inset 0 0 0 4px rgba(201,168,76,.3); border-radius: var(--radius);
+    }
+    .about-photo img { width: 100%; object-fit: cover; aspect-ratio: 1/1; }
+    .pillars { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-top: 1.5rem; }
+    .pillar {
+      display: flex; align-items: flex-start; gap: .6rem;
+      background: var(--offwhite); border-radius: var(--radius); padding: .75rem;
+      border-left: 3px solid var(--red);
+    }
+    .pillar-icon { font-size: 1.3rem; flex-shrink: 0; line-height: 1; }
+    .pillar-text { font-size: .88rem; font-weight: 600; color: var(--navy); }
+
+    /* ── CAMPAIGN UPDATES (BLOG) ───────────────────────────── */
+    .updates-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+    .update-card {
+      background: #fff; border-radius: var(--radius); box-shadow: var(--shadow);
+      overflow: hidden; display: flex; flex-direction: column;
+      border-top: 3px solid var(--red); transition: box-shadow var(--transition);
+    }
+    .update-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,.15); }
+    .update-card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .update-meta { display: flex; align-items: center; gap: .75rem; margin-bottom: .75rem; flex-wrap: wrap; }
+    .update-date { font-size: .8rem; color: var(--gray); }
+    .tag {
+      font-size: .7rem; font-family: var(--font-head); letter-spacing: .08em;
+      background: var(--navy); color: #fff; padding: .15rem .5rem; border-radius: 99px;
+    }
+    .update-title { font-family: var(--font-head); font-size: 1.15rem; color: var(--navy); margin-bottom: .6rem; }
+    .update-excerpt { color: var(--gray); font-size: .92rem; flex: 1; }
+    .update-full { color: var(--dark); font-size: .92rem; margin-top: .75rem; display: none; }
+    .update-full.open { display: block; }
+    .btn-read-more {
+      background: none; border: none; color: var(--red); font-family: var(--font-head);
+      font-size: .85rem; letter-spacing: .05em; cursor: pointer; padding: .5rem 0;
+      margin-top: .75rem; text-align: left; transition: color var(--transition);
+    }
+    .btn-read-more:hover { color: #a32320; }
+
+    /* ── USER STORIES / REVIEWS ────────────────────────────── */
+    .stories-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+    .story-card {
+      background: #fff; border-radius: var(--radius); box-shadow: var(--shadow);
+      padding: 1.5rem; position: relative; overflow: hidden;
+    }
+    .story-card::before {
+      content: '\201C'; position: absolute; top: -.2rem; left: .75rem;
+      font-size: 5rem; color: var(--light); font-family: Georgia, serif; line-height: 1;
+    }
+    .stars { color: var(--gold); font-size: 1.1rem; margin-bottom: .75rem; }
+    .story-text { color: var(--dark); font-size: .92rem; margin-bottom: 1rem; line-height: 1.6; }
+    .story-author { font-weight: 600; font-size: .88rem; color: var(--navy); }
+    .story-date   { font-size: .78rem; color: var(--gray); margin-top: .15rem; }
+
+    /* ── FLORIDA LEGAL ─────────────────────────────────────── */
+    .legal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .legal-links { margin-top: 1rem; }
+    .legal-link-item {
+      display: flex; align-items: center; gap: .75rem;
+      padding: .9rem 1rem; background: #fff; border-radius: var(--radius);
+      box-shadow: var(--shadow); margin-bottom: .75rem;
+      border-left: 3px solid var(--gold); transition: box-shadow var(--transition);
+    }
+    .legal-link-item:hover { box-shadow: 0 4px 16px rgba(0,0,0,.15); }
+    .legal-link-item .icon { font-size: 1.3rem; }
+    .legal-link-item a { font-weight: 600; color: var(--navy); font-size: .92rem; }
+    .legal-link-item a:hover { color: var(--red); }
+    .legal-link-item .sub { font-size: .78rem; color: var(--gray); display: block; }
+
+    /* ── 990s / NPOs ───────────────────────────────────────── */
+    .npo-table-wrap { overflow-x: auto; }
+    .npo-table {
+      width: 100%; border-collapse: collapse; font-size: .92rem;
+    }
+    .npo-table th {
+      background: var(--navy); color: #fff; font-family: var(--font-head);
+      letter-spacing: .05em; padding: .9rem 1rem; text-align: left;
+    }
+    .npo-table td { padding: .85rem 1rem; border-bottom: 1px solid var(--light); }
+    .npo-table tr:hover td { background: var(--offwhite); }
+    .npo-table a { color: var(--red); font-weight: 600; }
+    .npo-table a:hover { text-decoration: underline; }
+
+    /* ── GALLERIA ──────────────────────────────────────────── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+    .gallery-item {
+      border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
+      aspect-ratio: 4/3; cursor: pointer;
+    }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+    .gallery-item:hover img { transform: scale(1.05); }
+
+    /* Lightbox */
+    #lightbox {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,.9);
+      z-index: 9000; align-items: center; justify-content: center; padding: 1rem;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img { max-height: 90vh; max-width: 90vw; border-radius: var(--radius); }
+    #lightbox-close {
+      position: absolute; top: 1rem; right: 1.5rem; color: #fff; font-size: 2rem;
+      cursor: pointer; background: none; border: none; line-height: 1;
+    }
+
+    /* ── CONTRIBUTE ────────────────────────────────────────── */
+    #contribute {
+      background: linear-gradient(135deg, var(--navy) 0%, #2c3e6e 100%);
+      padding: 5rem 0; text-align: center;
+    }
+    .contribute-inner { max-width: 640px; margin: 0 auto; }
+    #contribute .section-title { color: #fff; }
+    #contribute .section-subtitle { color: rgba(255,255,255,.75); margin: 0 auto 2rem; }
+    .contribute-options { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+    .donate-note { font-size: .82rem; color: rgba(255,255,255,.5); }
+
+    /* ── CONTACT ───────────────────────────────────────────── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 3.5rem; align-items: start; }
+    .contact-info-item {
+      display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;
+    }
+    .contact-info-item .icon {
+      width: 44px; height: 44px; background: var(--navy); color: #fff;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .contact-info-item strong { display: block; font-size: .88rem; color: var(--navy); margin-bottom: .15rem; }
+    .contact-info-item a { color: var(--red); }
+    .contact-info-item a:hover { text-decoration: underline; }
+
+    /* Contact form */
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label { display: block; font-size: .88rem; font-weight: 600; color: var(--navy); margin-bottom: .4rem; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: .75rem 1rem; border: 1.5px solid var(--light);
+      border-radius: var(--radius); font-family: var(--font-body); font-size: .95rem;
+      color: var(--dark); background: #fff; transition: border-color var(--transition);
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none; border-color: var(--navy);
+    }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+    .honeypot { display: none !important; }
+    .form-status { margin-top: 1rem; padding: .75rem 1rem; border-radius: var(--radius); font-size: .92rem; display: none; }
+    .form-status.success { background: #d1fae5; color: #065f46; display: block; }
+    .form-status.error   { background: #fee2e2; color: #991b1b; display: block; }
+
+    /* ── FOOTER ────────────────────────────────────────────── */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,.7); padding: 3.5rem 0 2rem;
+    }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 2.5rem; margin-bottom: 2.5rem; }
+    .footer-brand-name { font-family: var(--font-head); color: #fff; font-size: 1.2rem; margin-bottom: .25rem; }
+    .footer-tagline { font-size: .88rem; color: var(--gold); margin-bottom: .75rem; }
+    .footer-desc { font-size: .85rem; line-height: 1.6; }
+    footer h4 { font-family: var(--font-head); color: #fff; letter-spacing: .08em; text-transform: uppercase; font-size: .88rem; margin-bottom: 1rem; }
+    .footer-links li { margin-bottom: .5rem; }
+    .footer-links a { font-size: .88rem; transition: color var(--transition); }
+    .footer-links a:hover { color: #fff; }
+    .footer-contact-item { font-size: .85rem; margin-bottom: .5rem; }
+    .footer-contact-item a { color: rgba(255,255,255,.7); }
+    .footer-contact-item a:hover { color: #fff; }
+    .social-row { display: flex; gap: .75rem; margin-top: 1rem; }
+    .social-btn {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,.1); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .95rem; font-weight: 700; transition: background var(--transition);
+    }
+    .social-btn:hover { background: var(--red); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: .75rem; font-size: .8rem;
+    }
+    .footer-legal { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-legal a { transition: color var(--transition); }
+    .footer-legal a:hover { color: #fff; }
+
+    /* ── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .about-grid   { grid-template-columns: 1fr; }
+      .about-photo  { max-width: 420px; margin: 0 auto; }
+      .legal-grid   { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid  { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .nav-links  { display: none; }
+      .hamburger  { display: flex; }
+      .section    { padding: 3.5rem 0; }
+      .form-row   { grid-template-columns: 1fr; }
+      .pillars    { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .hero-ctas .btn { width: 100%; text-align: center; }
+      .contribute-options .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ── HEADER ─────────────────────────────────────────── -->
+  <header id="site-header" role="banner">
+    <div class="container">
+      <nav class="nav-inner" aria-label="Main navigation">
+        <a href="#hero" class="nav-logo" aria-label="Christopher Leiphart home">
+          Christopher Leiphart
+          <span>Florida Political Candidate</span>
+        </a>
+
+        <ul class="nav-links" role="list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#updates">Updates</a></li>
+          <li><a href="#we-the-people">We The People</a></li>
+          <li><a href="#galleria">Galleria</a></li>
+          <li><a href="#florida-legal">FL Legal</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#contribute" class="btn btn--primary">Contribute</a></li>
+        </ul>
+
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+
+    <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+      <a href="#about">About</a>
+      <a href="#updates">Campaign Updates</a>
+      <a href="#we-the-people">We The People</a>
+      <a href="#galleria">Galleria</a>
+      <a href="#florida-legal">Florida Legal</a>
+      <a href="#npo-990s">Tax Form 990s</a>
+      <a href="#contact">Contact Chris</a>
+      <a href="#contribute" class="btn btn--primary">Contribute Today</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ── HERO ─────────────────────────────────────────── -->
+    <section id="hero" aria-label="Hero">
+      <div class="container">
+        <div class="hero-content">
+          <p class="hero-flag">🇺🇸 Northwest Florida &bull; Panama City</p>
+          <h1 class="hero-title">For Florida.<br>For <em>Families</em>.<br>For Freedom.</h1>
+          <p class="hero-sub">
+            Christopher Leiphart — veteran, father, and conservative leader — fighting for constitutional liberties, parental rights, judicial reform, and transparent government.
+          </p>
+          <div class="hero-ctas">
+            <a href="#about" class="btn btn--secondary">Learn More</a>
+            <a href="#contribute" class="btn btn--gold">Contribute Today</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ABOUT ─────────────────────────────────────────── -->
+    <section id="about" class="section reveal" aria-labelledby="about-title">
+      <div class="container">
+        <div class="about-grid">
+          <div>
+            <p class="section-label">About Chris</p>
+            <h2 id="about-title" class="section-title">Common-Sense Leadership Rooted in Service</h2>
+            <p style="color:var(--gray); margin-bottom:1rem;">
+              Christopher Leiphart is a proud veteran of the United States Armed Forces and a dedicated father based in Panama City, Northwest Florida. His lived experience — in uniform and in the community — drives a no-nonsense commitment to protecting the values that matter most to Florida families.
+            </p>
+            <p style="color:var(--gray); margin-bottom:1.5rem;">
+              Guided by faith and a deep respect for the Constitution, Chris believes in putting families first, holding government accountable, and ensuring every Florida citizen has a voice. He is running because he believes leadership should be transparent, principled, and close to the people it serves.
+            </p>
+            <div class="pillars">
+              <div class="pillar"><span class="pillar-icon">⚖️</span><span class="pillar-text">Judicial Reform</span></div>
+              <div class="pillar"><span class="pillar-icon">📖</span><span class="pillar-text">Parental Rights</span></div>
+              <div class="pillar"><span class="pillar-icon">🇺🇸</span><span class="pillar-text">Constitutional Liberties</span></div>
+              <div class="pillar"><span class="pillar-icon">🔍</span><span class="pillar-text">Transparent Government</span></div>
+              <div class="pillar"><span class="pillar-icon">🎖️</span><span class="pillar-text">Veterans' Support</span></div>
+              <div class="pillar"><span class="pillar-icon">✝️</span><span class="pillar-text">Faith-Guided Values</span></div>
+            </div>
+          </div>
+          <div class="about-photo">
+            <img
+              src="https://static.wixstatic.com/media/ed7391_1d7de952f44e4e089b08c9fa2a5a6e72~mv2.jpg"
+              alt="Christopher Leiphart, Florida Political Candidate"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CAMPAIGN UPDATES ──────────────────────────────── -->
+    <section id="updates" class="section section--alt reveal" aria-labelledby="updates-title">
+      <div class="container">
+        <p class="section-label">Campaign Updates</p>
+        <h2 id="updates-title" class="section-title">Stay Informed</h2>
+        <p class="section-subtitle">The latest news, announcements, and positions from the campaign.</p>
+        <div class="updates-grid" id="updates-grid"></div>
+      </div>
+    </section>
+
+    <!-- ── WE THE PEOPLE ─────────────────────────────────── -->
+    <section id="we-the-people" class="section reveal" aria-labelledby="wtp-title">
+      <div class="container">
+        <p class="section-label">We The People</p>
+        <h2 id="wtp-title" class="section-title">Voices from the Community</h2>
+        <p class="section-subtitle">Real stories from Florida families, veterans, and neighbors who believe in this campaign.</p>
+        <div class="stories-grid" id="stories-grid"></div>
+        <div style="text-align:center; margin-top:2.5rem;">
+          <a href="mailto:WeThePeople@christopherleiphart.com?subject=My%20Story" class="btn btn--navy">Share Your Story</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FLORIDA LEGAL ──────────────────────────────────── -->
+    <section id="florida-legal" class="section section--alt reveal" aria-labelledby="legal-title">
+      <div class="container">
+        <p class="section-label">Florida Legal</p>
+        <h2 id="legal-title" class="section-title">Transparency &amp; Legal Resources</h2>
+        <div class="legal-grid">
+          <div>
+            <p style="color:var(--gray); margin-bottom:1.25rem;">
+              Government transparency is not optional — it is a constitutional right. This section provides access to public records, court documents, and legal filings relevant to accountability in Northwest Florida government and judicial processes.
+            </p>
+            <p style="color:var(--gray);">
+              If you have documentation to submit or a public records request you'd like assistance with, contact the campaign directly at <a href="mailto:WeThePeople@christopherleiphart.com" style="color:var(--red); font-weight:600;">WeThePeople@christopherleiphart.com</a>.
+            </p>
+          </div>
+          <div>
+            <div class="legal-links" id="legal-links-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TAX FORM 990s / NPOs ───────────────────────────── -->
+    <section id="npo-990s" class="section reveal" aria-labelledby="npo-title">
+      <div class="container">
+        <p class="section-label">Nonprofit Transparency</p>
+        <h2 id="npo-title" class="section-title">Tax Form 990s &amp; NPO Records</h2>
+        <p class="section-subtitle">Public records of nonprofit organizations relevant to this campaign and community oversight efforts.</p>
+        <div class="npo-table-wrap">
+          <table class="npo-table" id="npo-table">
+            <thead>
+              <tr>
+                <th>Organization</th>
+                <th>Tax Year</th>
+                <th>Type</th>
+                <th>Document</th>
+              </tr>
+            </thead>
+            <tbody id="npo-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── GALLERIA ───────────────────────────────────────── -->
+    <section id="galleria" class="section section--alt reveal" aria-labelledby="gallery-title">
+      <div class="container">
+        <p class="section-label">Galleria</p>
+        <h2 id="gallery-title" class="section-title">On the Campaign Trail</h2>
+        <p class="section-subtitle">Photos from events, community meetings, and life in Northwest Florida.</p>
+        <div class="gallery-grid" id="gallery-grid"></div>
+      </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+      <button id="lightbox-close" aria-label="Close image viewer">&times;</button>
+      <img id="lightbox-img" src="" alt="" />
+    </div>
+
+    <!-- ── CONTRIBUTE ─────────────────────────────────────── -->
+    <section id="contribute" aria-labelledby="contribute-title">
+      <div class="container">
+        <div class="contribute-inner reveal">
+          <p class="section-label" style="color:var(--gold);">Join the Movement</p>
+          <h2 id="contribute-title" class="section-title">Stand With Chris</h2>
+          <p class="section-subtitle">
+            Every contribution — financial, volunteer, or word-of-mouth — moves Florida closer to the principled leadership it deserves. Help us protect families, defend the Constitution, and demand accountability.
+          </p>
+          <div class="contribute-options">
+            <a href="mailto:WeThePeople@christopherleiphart.com?subject=Contribution%20Inquiry" class="btn btn--gold">💛 Make a Donation</a>
+            <a href="mailto:WeThePeople@christopherleiphart.com?subject=I%20Want%20to%20Volunteer" class="btn btn--secondary">🙋 Volunteer</a>
+          </div>
+          <p class="donate-note">Paid for by Christopher Leiphart for Florida. Contributions are subject to campaign finance laws. Contact us for details.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CONTACT ────────────────────────────────────────── -->
+    <section id="contact" class="section reveal" aria-labelledby="contact-title">
+      <div class="container">
+        <p class="section-label">Contact Chris</p>
+        <h2 id="contact-title" class="section-title">Get in Touch</h2>
+        <div class="contact-grid">
+
+          <!-- Contact info -->
+          <div>
+            <div class="contact-info-item">
+              <div class="icon" aria-hidden="true">📍</div>
+              <div>
+                <strong>Campaign Office</strong>
+                6300 W Bay Pkwy<br>Panama City, FL 32409, USA
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="icon" aria-hidden="true">📞</div>
+              <div>
+                <strong>Phone</strong>
+                <a href="tel:+18504605892">(850) 460-5892</a>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="icon" aria-hidden="true">✉️</div>
+              <div>
+                <strong>Email</strong>
+                <a href="mailto:WeThePeople@christopherleiphart.com">WeThePeople@christopherleiphart.com</a>
+              </div>
+            </div>
+            <div style="margin-top:1.5rem; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow);">
+              <iframe
+                title="Campaign office map"
+                width="100%" height="240"
+                style="border:0; display:block;"
+                loading="lazy"
+                allowfullscreen
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=6300+W+Bay+Pkwy,Panama+City,FL+32409"
+              ></iframe>
+            </div>
+          </div>
+
+          <!-- Contact form -->
+          <div>
+            <form id="contact-form" novalidate>
+              <!-- Honeypot -->
+              <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off" />
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="cf-name">Full Name <span style="color:var(--red)">*</span></label>
+                  <input type="text" id="cf-name" name="name" required placeholder="Jane Smith" />
+                </div>
+                <div class="form-group">
+                  <label for="cf-email">Email Address <span style="color:var(--red)">*</span></label>
+                  <input type="email" id="cf-email" name="email" required placeholder="jane@example.com" />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="cf-phone">Phone (optional)</label>
+                  <input type="tel" id="cf-phone" name="phone" placeholder="(850) 555-0000" />
+                </div>
+                <div class="form-group">
+                  <label for="cf-subject">Subject <span style="color:var(--red)">*</span></label>
+                  <select id="cf-subject" name="subject" required>
+                    <option value="">Select a topic…</option>
+                    <option value="General Inquiry">General Inquiry</option>
+                    <option value="Volunteer">Volunteer</option>
+                    <option value="Media">Media / Press</option>
+                    <option value="Donation">Donation</option>
+                    <option value="Legal / Public Records">Legal / Public Records</option>
+                    <option value="Share My Story">Share My Story</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="cf-message">Message <span style="color:var(--red)">*</span></label>
+                <textarea id="cf-message" name="message" required placeholder="How can we help you?"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn--primary" style="min-width:180px;" id="cf-submit">
+                Send Message
+              </button>
+
+              <div class="form-status" id="cf-status" role="alert"></div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ─────────────────────────────────────────── -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">Christopher Leiphart</div>
+          <div class="footer-tagline">For Florida. For Families. For Freedom.</div>
+          <p class="footer-desc">
+            Veteran. Father. Conservative leader. Fighting for constitutional liberties, parental rights, and transparent government in Northwest Florida.
+          </p>
+          <div class="social-row" aria-label="Social media links">
+            <a href="#" class="social-btn" aria-label="Facebook">f</a>
+            <a href="#" class="social-btn" aria-label="Twitter / X">𝕏</a>
+            <a href="#" class="social-btn" aria-label="Instagram">📷</a>
+          </div>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul class="footer-links" role="list">
+            <li><a href="#about">About Chris</a></li>
+            <li><a href="#updates">Campaign Updates</a></li>
+            <li><a href="#we-the-people">We The People</a></li>
+            <li><a href="#florida-legal">Florida Legal</a></li>
+            <li><a href="#npo-990s">NPO 990s</a></li>
+            <li><a href="#galleria">Galleria</a></li>
+            <li><a href="#contribute">Contribute Today</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <div class="footer-contact-item">📍 6300 W Bay Pkwy, Panama City, FL 32409</div>
+          <div class="footer-contact-item">📞 <a href="tel:+18504605892">(850) 460-5892</a></div>
+          <div class="footer-contact-item">✉️ <a href="mailto:WeThePeople@christopherleiphart.com">WeThePeople@christopherleiphart.com</a></div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Christopher Leiphart for Florida. All rights reserved.</span>
+        <ul class="footer-legal" role="list">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Accessibility Statement</a></li>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ============================================================
+       CONTENT EDITOR ZONE
+       ── Add new items to any array below to update the site. ──
+       ── No need to touch any HTML or CSS. ──
+    ============================================================ */
+
+    // ── CAMPAIGN UPDATES / BLOG ───────────────────────────────
+    // Add a new object to this array to publish a new campaign update.
+    const CAMPAIGN_UPDATES = [
+      {
+        date: "June 15, 2026",
+        title: "Chris Announces Formal Candidacy for Florida State Office",
+        excerpt: "After months of grassroots conversations across Northwest Florida, Christopher Leiphart has formally announced his candidacy, citing an urgent need for constitutional accountability in Tallahassee.",
+        fullText: `After months of grassroots conversations across Northwest Florida — in church halls, VFW posts, and kitchen tables — Christopher Leiphart has formally announced his candidacy for Florida state office.\n\nHis platform centers on four pillars: judicial reform, parental rights, constitutional liberties, and transparent government. "The people of Florida deserve leaders who actually live the values they campaign on," Chris said at the announcement. "I'm running because I've seen firsthand what happens when accountability disappears from government."\n\nEarly polling shows strong support in Bay and Walton counties. The campaign will hold public town halls throughout the summer.`,
+        tags: ["Announcement", "Campaign"]
+      },
+      {
+        date: "June 3, 2026",
+        title: "Town Hall Recap: Parental Rights & School Board Accountability",
+        excerpt: "Over 200 residents gathered at the Lynn Haven Community Center for a discussion on parental rights, school curriculum transparency, and the role of local government in education.",
+        fullText: `Over 200 residents gathered at the Lynn Haven Community Center for one of the most energized political discussions Bay County has seen in years. The topic: parental rights, school curriculum transparency, and local government accountability.\n\nChris fielded questions for two hours on topics ranging from opt-out policies for curriculum materials to the process for removing school board members. Several attendees shared personal stories of being denied access to their child's educational records.\n\n"Government does not get to be more important to your child's future than you are," Chris told the crowd. A second town hall is scheduled for July in Walton County.`,
+        tags: ["Parental Rights", "Education", "Town Hall"]
+      },
+      {
+        date: "May 20, 2026",
+        title: "Statement on Florida Judicial Reform Legislation",
+        excerpt: "Christopher Leiphart issued a formal statement on proposed judicial reform legislation in Tallahassee, calling for stronger conflict-of-interest protections and expanded public access to court records.",
+        fullText: `Christopher Leiphart issued a formal statement today on proposed judicial reform legislation currently in committee in Tallahassee.\n\n"Florida's courts must be the last line of defense for citizens — not a tool of political favoritism," Chris wrote. "I am calling for three immediate reforms: mandatory recusal standards, real-time public access to docket updates, and an independent oversight body free from appointee conflicts."\n\nThe statement has been submitted to the Florida House Judiciary Committee and is available in full in the Florida Legal section of this site.`,
+        tags: ["Judicial Reform", "Legislation"]
+      }
+    ];
+
+    // ── USER STORIES / WE THE PEOPLE REVIEWS ─────────────────
+    // Add a new object to share a community member's story.
+    const USER_STORIES = [
+      {
+        name: "Sarah M., Panama City",
+        rating: 5,
+        story: "Chris showed up to our neighborhood meeting and actually listened — no talking points, no handlers. He answered every question directly. That's the kind of leader we need in Tallahassee.",
+        date: "May 2026"
+      },
+      {
+        name: "Retired Staff Sgt. David K., Fort Walton Beach",
+        rating: 5,
+        story: "As a veteran, I've seen too many politicians use the flag as a prop. Chris is the real deal. He served, he understands sacrifice, and his commitment to constitutional rights isn't rhetoric — it's principle.",
+        date: "April 2026"
+      },
+      {
+        name: "Jennifer & Tom R., Lynn Haven",
+        rating: 5,
+        story: "After our school board battle last year, we were exhausted. Chris reached out personally, helped us understand our rights, and stood with us publicly. We need more leaders like him who aren't afraid of controversy when it's the right thing to do.",
+        date: "June 2026"
+      },
+      {
+        name: "Pastor Marcus W., Callaway",
+        rating: 5,
+        story: "Our congregation has been concerned about government overreach into faith communities. Chris Leiphart is one of the few candidates who genuinely understands the First Amendment implications and has a thoughtful plan to protect religious liberty.",
+        date: "May 2026"
+      }
+    ];
+
+    // ── FLORIDA LEGAL DOCUMENTS ───────────────────────────────
+    // Add a new object to publish a legal document or resource link.
+    const LEGAL_DOCS = [
+      {
+        title: "Public Records Request Template",
+        sub: "Florida Chapter 119 — use this template to request government records",
+        icon: "📄",
+        url: "mailto:WeThePeople@christopherleiphart.com?subject=Public%20Records%20Request%20Template"
+      },
+      {
+        title: "Judicial Conflict of Interest Filing — Bay County",
+        sub: "Filed May 2026 — Circuit Court Case No. 26-CF-0412",
+        icon: "⚖️",
+        url: "#"
+      },
+      {
+        title: "School Board Transparency Petition",
+        sub: "2,300+ signatures submitted to Bay County School Board, March 2026",
+        icon: "📋",
+        url: "#"
+      },
+      {
+        title: "Chris's Formal Judicial Reform Statement",
+        sub: "Submitted to Florida House Judiciary Committee, May 2026",
+        icon: "📝",
+        url: "#"
+      }
+    ];
+
+    // ── TAX FORM 990s / NPO RECORDS ───────────────────────────
+    // Add a new object for each NPO document to publish.
+    const NPO_DOCS = [
+      {
+        name: "We The People Foundation",
+        year: "2024",
+        type: "Form 990",
+        url: "#"
+      },
+      {
+        name: "We The People Foundation",
+        year: "2023",
+        type: "Form 990",
+        url: "#"
+      },
+      {
+        name: "Northwest Florida Veterans Alliance",
+        year: "2024",
+        type: "Form 990-EZ",
+        url: "#"
+      },
+      {
+        name: "Bay County Families First Coalition",
+        year: "2024",
+        type: "Form 990",
+        url: "#"
+      }
+    ];
+
+    // ── GALLERY IMAGES ────────────────────────────────────────
+    // Add { src, alt } objects to add photos to the gallery section.
+    const GALLERY_IMAGES = [
+      {
+        src: "https://static.wixstatic.com/media/ed7391_8846ebcdd6cb41f298ae8e4d185ea506~mv2.png",
+        alt: "Christopher Leiphart campaign banner"
+      },
+      {
+        src: "https://static.wixstatic.com/media/ed7391_0bd1cbc98e4a46e0bb032f34fd716c0a~mv2.png",
+        alt: "Campaign event"
+      },
+      {
+        src: "https://static.wixstatic.com/media/ed7391_1d7de952f44e4e089b08c9fa2a5a6e72~mv2.jpg",
+        alt: "Christopher Leiphart"
+      },
+      {
+        src: "https://static.wixstatic.com/media/ed7391_9bbaf6cc12a1480c8de7f386f3cbbda5~mv2.png",
+        alt: "Campaign photo"
+      },
+      {
+        src: "https://static.wixstatic.com/media/ed7391_d753d7c225a84ed2936ceb844314a637~mv2.png",
+        alt: "Community event"
+      },
+      {
+        src: "https://static.wixstatic.com/media/ed7391_617d4bcc62574493a3fb10fc21ce4788~mv2.png",
+        alt: "Northwest Florida community"
+      }
+    ];
+
+    /* ============================================================
+       END CONTENT EDITOR ZONE
+    ============================================================ */
+
+
+    // ── Render Campaign Updates ───────────────────────────────
+    function renderUpdates() {
+      const grid = document.getElementById('updates-grid');
+      grid.innerHTML = CAMPAIGN_UPDATES.map((u, i) => `
+        <article class="update-card" aria-labelledby="update-title-${i}">
+          <div class="update-card-body">
+            <div class="update-meta">
+              <span class="update-date">${u.date}</span>
+              ${u.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+            </div>
+            <h3 class="update-title" id="update-title-${i}">${u.title}</h3>
+            <p class="update-excerpt">${u.excerpt}</p>
+            <div class="update-full" id="update-full-${i}">${u.fullText.split('\n').map(p => `<p style="margin-bottom:.75rem;">${p}</p>`).join('')}</div>
+            <button class="btn-read-more" onclick="toggleUpdate(${i})" aria-expanded="false" aria-controls="update-full-${i}">
+              Read More ↓
+            </button>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function toggleUpdate(i) {
+      const full = document.getElementById(`update-full-${i}`);
+      const btn  = full.previousElementSibling;
+      const open = full.classList.toggle('open');
+      btn.textContent = open ? 'Read Less ↑' : 'Read More ↓';
+      btn.setAttribute('aria-expanded', open);
+    }
+
+    // ── Render User Stories ───────────────────────────────────
+    function renderStories() {
+      const grid = document.getElementById('stories-grid');
+      grid.innerHTML = USER_STORIES.map(s => `
+        <div class="story-card">
+          <div class="stars" aria-label="${s.rating} stars">${'★'.repeat(s.rating)}${'☆'.repeat(5 - s.rating)}</div>
+          <p class="story-text">"${s.story}"</p>
+          <div class="story-author">${s.name}</div>
+          <div class="story-date">${s.date}</div>
+        </div>
+      `).join('');
+    }
+
+    // ── Render Legal Docs ─────────────────────────────────────
+    function renderLegal() {
+      const list = document.getElementById('legal-links-list');
+      list.innerHTML = LEGAL_DOCS.map(d => `
+        <div class="legal-link-item">
+          <span class="icon" aria-hidden="true">${d.icon}</span>
+          <div>
+            <a href="${d.url}">${d.title}</a>
+            <span class="sub">${d.sub}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ── Render NPO 990s ───────────────────────────────────────
+    function renderNPOs() {
+      const tbody = document.getElementById('npo-tbody');
+      tbody.innerHTML = NPO_DOCS.map(d => `
+        <tr>
+          <td>${d.name}</td>
+          <td>${d.year}</td>
+          <td>${d.type}</td>
+          <td><a href="${d.url}" ${d.url !== '#' ? 'target="_blank" rel="noopener"' : ''}>View Document</a></td>
+        </tr>
+      `).join('');
+    }
+
+    // ── Render Gallery ────────────────────────────────────────
+    function renderGallery() {
+      const grid = document.getElementById('gallery-grid');
+      grid.innerHTML = GALLERY_IMAGES.map((img, i) => `
+        <div class="gallery-item" tabindex="0"
+             onclick="openLightbox('${img.src}','${img.alt}')"
+             onkeypress="if(event.key==='Enter')openLightbox('${img.src}','${img.alt}')"
+             role="button" aria-label="View photo: ${img.alt}">
+          <img src="${img.src}" alt="${img.alt}" loading="lazy" />
+        </div>
+      `).join('');
+    }
+
+    function openLightbox(src, alt) {
+      const lb = document.getElementById('lightbox');
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox-img').alt = alt;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    document.getElementById('lightbox-close').addEventListener('click', () => {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    });
+    document.getElementById('lightbox').addEventListener('click', e => {
+      if (e.target === e.currentTarget) {
+        e.currentTarget.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        document.getElementById('lightbox').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // ── Contact Form ──────────────────────────────────────────
+    // Replace YOUR_FORM_ID below with your Formspree form ID
+    // Get one free at https://formspree.io
+    const FORMSPREE_ID = 'YOUR_FORM_ID';
+
+    document.getElementById('contact-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const form    = this;
+      const btn     = document.getElementById('cf-submit');
+      const status  = document.getElementById('cf-status');
+      const honey   = form.querySelector('[name="_gotcha"]');
+
+      // Honeypot check
+      if (honey && honey.value) return;
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      status.className = 'form-status';
+      status.style.display = 'none';
+
+      try {
+        const data = new FormData(form);
+        const res  = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          status.className = 'form-status success';
+          status.textContent = '✅ Your message was sent! We'll be in touch soon.';
+          form.reset();
+        } else {
+          const json = await res.json().catch(() => ({}));
+          throw new Error(json.error || 'Server error');
+        }
+      } catch (err) {
+        status.className = 'form-status error';
+        status.textContent = `❌ Something went wrong: ${err.message}. Please email us directly at WeThePeople@christopherleiphart.com`;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Send Message';
+      }
+    });
+
+    // ── Hamburger menu ────────────────────────────────────────
+    const hamburger = document.querySelector('.hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    hamburger.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open);
+    });
+
+    // Close mobile nav on link click
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // ── Scroll-reveal ─────────────────────────────────────────
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ── Active nav highlight ──────────────────────────────────
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(a => a.classList.remove('active'));
+          const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-50% 0px -50% 0px' });
+
+    sections.forEach(s => navObserver.observe(s));
+
+    // ── Init ──────────────────────────────────────────────────
+    renderUpdates();
+    renderStories();
+    renderLegal();
+    renderNPOs();
+    renderGallery();
+  </script>
+
+</body>
+</html>
